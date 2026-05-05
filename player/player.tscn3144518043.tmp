@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://da1qqp3bgpt3v"]
+
+[ext_resource type="Script" uid="uid://q4w1tjv7mxai" path="res://player/scripte/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://bbduxbstsbtdi" path="res://player/states/idle.gd" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://daqos0uo01633" path="res://player/states/run.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://b06eaqldysodb" path="res://player/states/jump.gd" id="4_yw30f"]
+
+[sub_resource type="Gradient" id="Gradient_kqu6x"]
+offsets = PackedFloat32Array(0, 0.9879518, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.8862745, 0.31764707, 0.8862745, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oul6g"]
+gradient = SubResource("Gradient_kqu6x")
+width = 18
+height = 48
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+size = Vector2(16, 46)
+
+[node name="Player" type="CharacterBody2D" unique_id=1772048384]
+position = Vector2(1, -1)
+script = ExtResource("1_oul6g")
+metadata/_edit_group_ = true
+
+[node name="states" type="Node" parent="." unique_id=968835634]
+
+[node name="idle" type="Node" parent="states" unique_id=1402482862]
+unique_name_in_owner = true
+script = ExtResource("2_g1dw6")
+
+[node name="run" type="Node" parent="states" unique_id=1040492466]
+unique_name_in_owner = true
+script = ExtResource("3_g1dw6")
+
+[node name="jump" type="Node" parent="states" unique_id=1576937596]
+unique_name_in_owner = true
+script = ExtResource("4_yw30f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1078777717]
+position = Vector2(0, -24)
+texture = SubResource("GradientTexture2D_oul6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=790699770]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_rkbax")
+debug_color = Color(0, 1, 0.69803923, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2144290952]
+offset = Vector2(20, 20)
+
+[node name="Label" type="Label" parent="." unique_id=1670079824]
+offset_left = -18.0
+offset_top = -68.0
+offset_right = 18.0
+offset_bottom = -47.0
+theme_override_font_sizes/font_size = 12
+text = "lable"
+horizontal_alignment = 1
+vertical_alignment = 1

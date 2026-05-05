@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Source Of Curruption"
 config/version="0.0.1"
+run/main_scene="uid://jf106vavx8ge"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://pggx6bpds0q4"
 
