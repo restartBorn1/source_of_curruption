@@ -1,13 +1,12 @@
-class_name PlayerStateRun extends PlayerState
+class_name PlayerFallState extends PlayerState
 
-var timer:float = 0
-
+#状态初始化
 func init() -> void:
-	#print("p:",name)
 	pass
 	
 #进入某个状态实现的功能
 func enter() -> void:
+	player.add_debug_indicator(Color.YELLOW)
 	pass
 	
 #退出状态实现的功能
@@ -16,23 +15,16 @@ func exit() ->void:
 	
 #处理输入
 func handle_input(_event:InputEvent) -> PlayerState:
-	if _event.is_action_pressed("jump"):
-		return jump
 	return player_next_state
 
 #特定状态的处理函数，用于Player类的处理函数调用
 func process(_delta:float) -> PlayerState:
-	if player.direction.x == 0:
-		return idle
 	return player_next_state
 	
 #特定状态的物理处理函数，用于Player类的物理处理函数调用
-func physics_process(delta: float) -> PlayerState:
+func physics_process(_delta: float) -> PlayerState:
+	if player.is_on_floor():
+		return idle
+	#在下落状态时可以左右移动
 	player.velocity.x = player.direction.x * player.move_speed
-	if player.is_on_floor() == false:
-		timer += delta
-		player.velocity.y = 0
-		if timer > 0.1:
-			timer = 0
-			return fall
 	return player_next_state

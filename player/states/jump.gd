@@ -1,8 +1,6 @@
 class_name PlayerStateJump extends PlayerState
 
-var jump_hold_timer:float = 0.0
-var jump_max_time = 0.8
-var jump_force = -1000
+@export var jump_velocity:float = 450 #跳跃速度
 
 func init() -> void:
 	#print("p:",name)
@@ -10,6 +8,8 @@ func init() -> void:
 	
 #进入某个状态实现的功能
 func enter() -> void:
+	player.velocity.y -= jump_velocity
+	player.add_debug_indicator(Color.LIME_GREEN)
 	pass
 	
 #退出状态实现的功能
@@ -17,22 +17,23 @@ func exit() ->void:
 	pass
 	
 #处理输入
-func handle_input(_event:InputEvent) -> PlayerState:
-	if _event.is_action_released("jump") or jump_hold_timer >= jump_max_time:
-		return idle
+func handle_input(event:InputEvent) -> PlayerState:
+	if event.is_action_released("jump"):
+		player.velocity.y *= 0.5
+		return fall
 	return player_next_state
 
 #特定状态的处理函数，用于Player类的处理函数调用
 func process(_delta:float) -> PlayerState:
-	jump_hold_timer += _delta
 	return player_next_state
 	
 #特定状态的物理处理函数，用于Player类的物理处理函数调用
 func physics_process(_delta: float) -> PlayerState:
-	
 	if player.is_on_floor():
-		player.velocity.y = player.jump_height
-	else:
-		player.velocity.y += jump_force * _delta
+		return idle
+	elif player.velocity.y >= 0:
+		return fall
 	
+	#在跳跃状态时可以左右移动
+	player.velocity.x = player.direction.x * player.move_speed
 	return player_next_state

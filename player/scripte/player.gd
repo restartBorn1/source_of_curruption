@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody2D
 
+const DEBUG_JUMP_INDICARORS = preload("uid://bhwji1cmxo7b5")
+
 #region /// 导出变量
-@export var move_speed:float = 150
-@export var jump_height:float = -200
+@export var move_speed:float = 125
 #endregion
 
 #region /// 状态机变量
@@ -83,3 +84,11 @@ func update_direction() -> void:
 	var x_axis = Input.get_axis("left","right")
 	var y_axis = Input.get_axis("up","down")
 	direction = Vector2(x_axis,y_axis)
+	
+func add_debug_indicator(color:Color = Color.RED):
+	var d:Node2D = DEBUG_JUMP_INDICARORS.instantiate()
+	get_tree().root.add_child(d)
+	d.global_position = global_position
+	d.modulate = color
+	await get_tree().create_timer(2.0).timeout
+	d.queue_free()

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cx8hx18gea7vb" path="res://player/states/dodge.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://cgi38676yrv25" path="res://player/states/dash.gd" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://claplk4a36hml" path="res://player/states/attack.gd" id="7_boad6"]
+[ext_resource type="Script" uid="uid://caohc61y60jj0" path="res://player/states/fall.gd" id="8_rgyib"]
 
 [sub_resource type="Gradient" id="Gradient_kqu6x"]
 offsets = PackedFloat32Array(0, 0.9879518, 1)
@@ -50,6 +51,10 @@ script = ExtResource("6_g6k8r")
 [node name="attack" type="Node" parent="states" unique_id=873624661]
 unique_name_in_owner = true
 script = ExtResource("7_boad6")
+
+[node name="fall" type="Node" parent="states" unique_id=286277121]
+unique_name_in_owner = true
+script = ExtResource("8_rgyib")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1078777717]
 position = Vector2(0, -24)

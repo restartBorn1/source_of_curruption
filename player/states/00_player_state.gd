@@ -12,6 +12,7 @@ var player_next_state:PlayerState #存储玩家下一个状态的变量
 @onready var dodge: Dodge = %dodge
 @onready var dash: Dash = %dash
 @onready var attack: Attack = %attack
+@onready var fall: PlayerFallState = %fall
 #endregion
 
 #状态初始化
