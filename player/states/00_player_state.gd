@@ -13,6 +13,8 @@ var player_next_state:PlayerState #存储玩家下一个状态的变量
 @onready var dash: Dash = %dash
 @onready var attack: Attack = %attack
 @onready var fall: PlayerFallState = %fall
+@onready var squat: PlayerStateSquat = %squat
+
 #endregion
 
 #状态初始化

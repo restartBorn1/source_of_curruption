@@ -2,8 +2,21 @@ class_name Player extends CharacterBody2D
 
 const DEBUG_JUMP_INDICARORS = preload("uid://bhwji1cmxo7b5")
 
+#region /// 就绪变量
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_stand: CollisionShape2D = $CollisionStand
+@onready var collision_squat: CollisionShape2D = $CollisionSquat
+@onready var player_camera: Camera2D = $PlayerCamera
+@onready var player_anime: AnimatedSprite2D = $PlayerAnime
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var one_way_platform_shap_cast: ShapeCast2D = $OneWayPlatformShapCast
+#endregion
+
 #region /// 导出变量
 @export var move_speed:float = 125
+@export var gravity_multiplier:float = 1.0 #重力乘数，用来改变在不同状态时玩家的坠落速度
+@export var gravity:float = 980.0 #重力
+@export var max_fall_velocity:float = 600 #最大下落速度
 #endregion
 
 #region /// 状态机变量
@@ -16,7 +29,6 @@ var previous_state:PlayerState: #获取前一个状态
 
 #region ///标准变量
 var direction:Vector2 = Vector2.ZERO #方向变量
-var gravity:float = 980.0 #重力
 #endregion
 
 func _ready() -> void:
@@ -30,11 +42,12 @@ func _process(_delta: float) -> void:
 	update_direction()
 	change_state(current_state.process(_delta))
 
-func _physics_process(_delta: float) -> void:
-	velocity.y += gravity * _delta
+func _physics_process(delta: float) -> void:
+	velocity.y += gravity * delta * gravity_multiplier
+	velocity.y = clampf(velocity.y,-1000.0,max_fall_velocity)
 	move_and_slide()
 	
-	change_state(current_state.physics_process(_delta))
+	change_state(current_state.physics_process(delta))
 	move_and_slide()
 
 func initialize_states() -> void:
@@ -79,11 +92,16 @@ func change_state(new_state:PlayerState) -> void:
 	states.resize(3) #只保留3个状态，后面的状态将被剔除
 	
 func update_direction() -> void:
-	#var prev_direction:Vector2 = direction
-	
+	var prev_direction:Vector2 = direction
 	var x_axis = Input.get_axis("left","right")
 	var y_axis = Input.get_axis("up","down")
 	direction = Vector2(x_axis,y_axis)
+	
+	if prev_direction.x != direction.x:
+		if direction.x < 0:
+			sprite.flip_h = true
+		elif direction.x > 0:
+			sprite.flip_h = false
 	
 func add_debug_indicator(color:Color = Color.RED):
 	var d:Node2D = DEBUG_JUMP_INDICARORS.instantiate()
