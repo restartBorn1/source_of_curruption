@@ -163,19 +163,18 @@ libraries/ = SubResource("AnimationLibrary_2ieo8")
 autoplay = &"idle"
 
 [node name="CollisionStand" type="CollisionShape2D" parent="." unique_id=790699770]
-visible = false
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_8t03j")
 debug_color = Color(0, 1, 0.69803923, 0.41960785)
 
 [node name="CollisionSquat" type="CollisionShape2D" parent="." unique_id=2018978131]
-visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_2ieo8")
 disabled = true
 debug_color = Color(0, 1, 0.69803923, 0.41960785)
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2144290952]
+position = Vector2(3, -50)
 offset = Vector2(20, 20)
 zoom = Vector2(0.6, 0.6)
 
@@ -190,7 +189,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OneWayPlatformShapCast" type="ShapeCast2D" parent="." unique_id=1195831122]
-visible = false
 enabled = false
 shape = SubResource("RectangleShape2D_8t03j")
 target_position = Vector2(0, 2)

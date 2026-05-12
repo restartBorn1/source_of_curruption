@@ -7,7 +7,6 @@ const DEBUG_JUMP_INDICARORS = preload("uid://bhwji1cmxo7b5")
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_squat: CollisionShape2D = $CollisionSquat
 @onready var player_camera: Camera2D = $PlayerCamera
-@onready var player_anime: AnimatedSprite2D = $PlayerAnime
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var one_way_platform_shap_cast: ShapeCast2D = $OneWayPlatformShapCast
 #endregion
@@ -70,7 +69,6 @@ func initialize_states() -> void:
 		
 	#设置初始状态
 	change_state(current_state)
-	current_state.enter()
 	$Label.text = current_state.name
 	
 #改变状态
@@ -78,7 +76,7 @@ func change_state(new_state:PlayerState) -> void:
 	#如果需要改变的新状态为空或者当新状态与当前状态相同时，结束函数
 	if new_state == null:
 		return
-	if new_state == current_state:
+	elif new_state == current_state:
 		return
 	
 	#如果当前状态不为空，就退出该状态
