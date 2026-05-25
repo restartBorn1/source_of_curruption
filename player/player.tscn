@@ -113,8 +113,7 @@ size = Vector2(16, 4)
 
 [node name="Player" type="CharacterBody2D" unique_id=1772048384]
 z_index = 5
-position = Vector2(1, -1)
-collision_layer = 0
+collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_oul6g")
 
@@ -144,7 +143,7 @@ script = ExtResource("6_g6k8r")
 unique_name_in_owner = true
 script = ExtResource("7_boad6")
 
-[node name="fall" type="Node" parent="states" unique_id=286277121]
+[node name="fall" type="Node" parent="states" unique_id=286277121 groups=["Player"]]
 unique_name_in_owner = true
 script = ExtResource("8_rgyib")
 

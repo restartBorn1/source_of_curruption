@@ -12,9 +12,12 @@ config_version=5
 
 config/name="Source Of Curruption"
 config/version="0.0.1"
-run/main_scene="uid://px1rjxyxu4rv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://pggx6bpds0q4"
+
+[autoload]
+
+SenceManager="*uid://bhxef27hgmo45"
 
 [display]
 
@@ -27,6 +30,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="Source Of Curruption"
+
+[global_group]
+
+Player=""
 
 [input]
 
@@ -75,6 +82,7 @@ action={
 
 2d_physics/layer_1="Floor"
 2d_physics/layer_2="OneWayPlatform"
+2d_physics/layer_5="player"
 
 [physics]
 
