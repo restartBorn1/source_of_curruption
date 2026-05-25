@@ -2,17 +2,43 @@
 
 [ext_resource type="Script" uid="uid://c41tklysnogor" path="res://00_global/sence_manager/sence_manager.gd" id="1_ey1rr"]
 
-[node name="SenceManager" type="CanvasLayer" unique_id=722836271]
+[sub_resource type="Gradient" id="Gradient_ey1rr"]
+offsets = PackedFloat32Array(0.333, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jmgdf"]
+gradient = SubResource("Gradient_ey1rr")
+width = 1440
+height = 810
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="SceneManager" type="CanvasLayer" unique_id=722836271]
+process_mode = 3
 script = ExtResource("1_ey1rr")
 
-[node name="Control" type="Control" parent="." unique_id=579133627]
+[node name="Fade" type="Control" parent="." unique_id=579133627]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Control" unique_id=1823006211]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Test"
+[node name="TextureRect" type="TextureRect" parent="Fade" unique_id=1783328271]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.8958334
+anchor_top = -1.9740741
+anchor_right = 1.1041666
+anchor_bottom = 1.0259259
+offset_left = 430.0
+offset_top = 263.0
+offset_right = 430.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_jmgdf")
+metadata/_edit_use_anchors_ = true

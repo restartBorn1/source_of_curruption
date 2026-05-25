@@ -1,6 +1,6 @@
 class_name PlayerStateJump extends PlayerState
 
-@export var jump_velocity:float = 380 #跳跃速度
+@export var jump_velocity:float = 420 #跳跃速度
 
 func init() -> void:
 	#print("p:",name)
